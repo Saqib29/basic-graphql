@@ -1,25 +1,27 @@
 import { Sequelize } from "sequelize";
-import { db } from "../lib/config";
+import { dbConfig } from "../config/config";
 
 const db = new Sequelize({
     dialect: 'postgres',
-    host: db.host,
-    port: db.port,
-    username: db.username,
-    password: db.password,
-    database: db.database
+    host: dbConfig.host,
+    port: dbConfig.port,
+    username: dbConfig.username,
+    password: dbConfig.password,
+    database: dbConfig.database
 })
 
 async function syncDatabase() {
     try {
         await db.authenticate();
+        console.log("Database connected successfully");
+        
         await db.sync({ alter: true });
         console.log(`Database synchronized successfully`);
     } catch (error) {
-        console.log('Error synchronized database:', error);
+        console.error('Error synchronized database:', error);
     }
 }
 
 syncDatabase();
 
-module.exports = db;
+export default db;
