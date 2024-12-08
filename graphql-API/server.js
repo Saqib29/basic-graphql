@@ -1,5 +1,5 @@
 import { ApolloServer } from "apollo-server"
-import { typeDefs } from "./graphql/typeDefs"
+import { typeDefs } from "./graphql/typeDefs.js"
 import dotenv from 'dotenv'
 
 dotenv.config()
