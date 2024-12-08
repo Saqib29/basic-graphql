@@ -1,10 +1,11 @@
 import { ApolloServer } from "apollo-server"
+import { typeDefs } from "./graphql/typeDefs"
 import dotenv from 'dotenv'
 
 dotenv.config()
 
 const server = new ApolloServer({
-    // typeDefs,
+    typeDefs,
     // resolvers,
     context: ({ req }) => ({ req, db }),
 })
