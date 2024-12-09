@@ -1,15 +1,20 @@
 import { ApolloServer } from "apollo-server"
 import { typeDefs } from "./graphql/typeDefs.js"
-import dotenv from 'dotenv'
+import { resolvers } from './graphql/resolvers.js'
+import { serverConfig } from "./config/config.js"
+import db from "./utils/db.js"
 
-dotenv.config()
 
 const server = new ApolloServer({
     typeDefs,
-    // resolvers,
+    resolvers,
+    cors: {
+        origin: '*',
+        credentials: true,
+    },
     context: ({ req }) => ({ req, db }),
 })
 
-server.listen({ port: 3000 }).then(({ url }) => {
-    console.log(`Server ready at ${url}`);
+server.listen({ port: serverConfig.port }).then(({ url }) => {
+    console.log(`Server ready at ${url} and port is ${serverConfig.port}`);
 })

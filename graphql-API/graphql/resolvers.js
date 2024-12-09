@@ -1,5 +1,4 @@
-import { Query } from "pg";
-import User from "../models/user";
+import User from "../models/user.js";
 
 export const resolvers = {
     Query: {

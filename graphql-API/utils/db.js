@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
-import { dbConfig } from "../config/config";
+import { dbConfig } from "../config/config.js";
 
 const db = new Sequelize({
     dialect: 'postgres',
     host: dbConfig.host,
-    port: dbConfig.port,
+    port: parseInt(dbConfig.port),
     username: dbConfig.username,
     password: dbConfig.password,
     database: dbConfig.database
