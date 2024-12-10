@@ -7,7 +7,8 @@ module.exports = {
     database: process.env.POSTGRES_DB || "post_db",
     host: process.env.POSTGRES_HOST || "127.0.0.1",
     dialect: process.env.DB_DIALECT || "postgres",
-    port: process.env.POSTGRES_PORT || 5432
+    port: process.env.POSTGRES_PORT || 5432,
+
   },
   test: {
     username: "root",
