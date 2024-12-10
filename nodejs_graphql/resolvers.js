@@ -1,4 +1,5 @@
 const { User } = require('./models');
+const { Beer } = require('./models');
 const bcrypt = require("bcrypt")
 const jsonwebtoken = require('jsonwebtoken');
 
@@ -10,6 +11,16 @@ const resolvers = {
             console.log("Authenticated user:", user);
             if (user) return await User.findOne({ where: { id: user.id } })
             throw new Error("Sorry, you are not an authenticated user!");
+        },
+
+        async beer(_, { id }, { user }) {
+            if (user) return await Beer.findOne({ where: { id: user.id} })
+            throw new Error("Sorry, your not an authenticated user");
+        },
+
+        async beers(_, { brand }, { user }) {
+            if (user) return await Beer.findAll();
+            throw new Error("Sorry, you're not an authenticated user!");
         }
     },
 
@@ -33,8 +44,11 @@ const resolvers = {
             return jsonwebtoken.sign({ id: user.id, login: user.login }, JWT_SECRETE, {
                 expiresIn: "1d",
             })
+        },
 
-
+        async createBeer(_, { name, brand, price }) {
+            const beer = await Beer.create({ name, brand, price })
+            return beer;
         }
     }
 }

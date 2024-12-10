@@ -20,6 +20,7 @@ const typeDefs = `#graphql
     type Mutation {
         register(login: String!, password: String!): String
         login(login: String!, password: String!): String
+        createBeer(name: String!, brand: String!, price: Float!): Beer
     }
 `
 
