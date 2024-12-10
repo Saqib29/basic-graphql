@@ -7,7 +7,8 @@ const JWT_SECRETE = require('./constants');
 const resolvers = {
     Query: {
         async current(_, args, { user }) {
-            if (user) return await User.findOne({ where: { id: user.id }});
+            console.log("Authenticated user:", user);
+            if (user) return await User.findOne({ where: { id: user.id } })
             throw new Error("Sorry, you are not an authenticated user!");
         }
     },

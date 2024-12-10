@@ -1,7 +1,7 @@
 const typeDefs = `#graphql
     type User {
         id: Int!
-        logIn: String!
+        login: String!
     }
 
     type Beer {
