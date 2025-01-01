@@ -1,5 +1,5 @@
-const { Sequelize } = require("sequelize");
-const { databaseConfig } = require("../config/config");
+import { Sequelize } from "sequelize"
+import { databaseConfig } from "../config/config";
 
 const sequelize = new Sequelize(
   databaseConfig.postgres_db,
