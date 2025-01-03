@@ -3,8 +3,8 @@ import { databaseConfig } from "../config/config";
 
 const sequelize = new Sequelize(
   databaseConfig.postgres_db,
-  databaseConfig.postgress_user,
-  databaseConfig.postgres_db,
+  databaseConfig.postgres_user,
+  databaseConfig.postgres_password,
   {
     host: databaseConfig.postgres_host,
     dialect: "postgres",
