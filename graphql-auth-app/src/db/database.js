@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize"
-import { databaseConfig } from "../config/config";
+import { databaseConfig } from "../config/config.js";
 
 const sequelize = new Sequelize(
   databaseConfig.postgres_db,

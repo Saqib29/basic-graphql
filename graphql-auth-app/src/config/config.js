@@ -1,6 +1,10 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import './dotEnv.js'
+import { databaseConfig } from './database.config.js'
+import { serverConfig } from './server.config.js'
+import { jwtConfig } from './jwt.config.js';
 
-export * as  databaseConfig from './database.config'
-export * as  serverConfig from './server.config'
-export * as jwtConfig from './jwt.config'
+export {
+  databaseConfig,
+  serverConfig,
+  jwtConfig
+}

@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"
-import sequelize from "../db/database";
-import { UserRole } from "../utils/enum";
+import sequelize from "../db/database.js";
+import { UserRole } from "../utils/enum.js";
 
 
 const User = sequelize.define('User', {

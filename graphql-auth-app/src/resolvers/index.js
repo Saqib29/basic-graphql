@@ -1,6 +1,6 @@
-import User from "../models/user.model"
-import { comparePassword, hashPassword } from "../utils/bcrypt"
-import { generateToken } from "../utils/jwt";
+import User from "../models/user.model.js"
+import { comparePassword, hashPassword } from "../utils/bcrypt.js"
+import { generateToken } from "../utils/jwt.js";
 
 export const resolvers = {
   Query: {
@@ -8,11 +8,11 @@ export const resolvers = {
   },
 
   Mutation: {
-    singUp: async (_, { username, password }) => {
-      const hashPassword = await hashPassword(password);
+    signUp: async (_, { username, password }) => {
+      const hashedPassword = await hashPassword(password);
       const user = await User.create({
         username,
-        password: hashPassword,
+        password: hashedPassword,
       });
 
       return generateToken(user)

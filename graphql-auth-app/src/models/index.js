@@ -1,5 +1,5 @@
-import Role from "./role.model";
-import User from "./user.model";
+import Role from "./role.model.js";
+import User from "./user.model.js";
 
 User.belongsTo(Role, { foreignKey: "roleId" })
 Role.hasMany(User, { foreignKey: "roleId" })
