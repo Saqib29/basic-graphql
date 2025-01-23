@@ -25,4 +25,8 @@ export const typeDefs = gql`
   type Mutation {
     addBlogPost(title: String, body: String, postImage: String): BlogPost
   }
+
+  typoe Subscription {
+    newBlogPost: BlogPost
+  }
 `
