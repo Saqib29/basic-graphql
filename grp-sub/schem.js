@@ -26,7 +26,7 @@ export const typeDefs = gql`
     addBlogPost(title: String, body: String, postImage: String): BlogPost
   }
 
-  typoe Subscription {
+  type Subscription {
     newBlogPost: BlogPost
   }
 `
