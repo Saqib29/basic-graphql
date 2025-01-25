@@ -1,7 +1,4 @@
-import { gql } from "apollo-server"
-
-
-export const typeDefs = gql`
+export const typeDefs = `
   type BlogPost {
     _id: String
     title: String
@@ -19,7 +16,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    blogPosts: BlogPost
+    blogPosts: BlogPosts
     blogPost(id: String): BlogPost
   }
 

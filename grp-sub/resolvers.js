@@ -1,15 +1,14 @@
 import { PubSub } from 'graphql-subscriptions'
-import _r from './data.json' assert { type: 'json' }
+import { blogPosts } from './data.js'
 
 const pubsub = new PubSub()
 
 export const resolvers = {
   Query: {
-    blogPost(parent, args, context, info) {
-      const blogPosts = _r.blogPosts
+    blogPosts(parent, args, context, info) {
 
       return {
-        node: blogPosts,
+        nodes: blogPosts,
         aggregate: {
           count: blogPosts.length
         }
@@ -17,35 +16,34 @@ export const resolvers = {
     },
 
     blogPost(parent, args, context, info) {
-      const blogPost = _r.blogPosts
       const id = args.id
 
-      return blogPost.find(post => post._id === id)
+      return blogPosts.find(post => post._id === id)
     }
   },
 
   Mutation: {
     addBlogPost(parent, args, context, info) {
       const { title, body, postImage } = args
-      const blogPost = {
+      const newBlogPost = {
         _id: Date.now(),
         title,
         body,
         postImage
       }
 
-      _r.blogPosts.push(blogPost)
+      blogPosts.push(newBlogPost)
 
-      pubsub.publish('NEW_BLOGPOST', { newBlogPost: blogPost })
+      pubsub.publish('NEW_BLOGPOST', { newBlogPost })
 
-      return blogPost
+      return newBlogPost
     }
   },
 
   Subscription: {
     newBlogPost: {
       resolve: (payload) => payload.newBlogPost,
-      subscribe: () => pubsub.asyncIterator(['NEW_BLOGPOST'])
+      subscribe: () => pubsub.asyncIterableIterator(['NEW_BLOGPOST'])
     }
   }
 }
