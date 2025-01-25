@@ -1,5 +1,5 @@
 {
-  "blogPost": [
+  "blogPosts": [
     {
       "_id": "1",
       "title": "Introduction to GraphQL",

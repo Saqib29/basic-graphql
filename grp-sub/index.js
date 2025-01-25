@@ -3,11 +3,16 @@ import dotenv from 'dotenv'
 import { ApolloServer } from 'apollo-server-express'
 import { createServer } from 'http'
 
+import { typeDefs } from './schema.js'
+import { resolvers } from './resolvers.js'
+
 dotenv.config()
 
 const app = express()
 
 const server = new ApolloServer({
+  typeDefs,
+  resolvers,
   playground: {
     endpoint: "/graphql",
     settings: {

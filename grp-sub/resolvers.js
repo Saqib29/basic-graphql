@@ -1,9 +1,9 @@
-import { PubSub } from 'apollo-server-express'
-import _r from './data.json'
+import { PubSub } from 'graphql-subscriptions'
+import _r from './data.json' assert { type: 'json' }
 
 const pubsub = new PubSub()
 
-export const resolver = {
+export const resolvers = {
   Query: {
     blogPost(parent, args, context, info) {
       const blogPosts = _r.blogPosts
@@ -45,7 +45,7 @@ export const resolver = {
   Subscription: {
     newBlogPost: {
       resolve: (payload) => payload.newBlogPost,
-      subscribe: () => pubsub.asyncIterator('NEW_BLOGPOST')
+      subscribe: () => pubsub.asyncIterator(['NEW_BLOGPOST'])
     }
   }
 }
